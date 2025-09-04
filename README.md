@@ -1,0 +1,2 @@
+# dilshodbeksantaxnika
+santexnika
