@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dilshodbek Santexnika Xizmatlari</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif;}
+    body {background:#f8f9fa; color:#333; line-height:1.6;}
+    a {text-decoration:none; color:inherit;}
+    img {max-width:100%; border-radius:10px;}
+
+    /* HEADER */
+    header {
+      background:linear-gradient(135deg,#0077b6,#00b4d8);
+      color:#fff; padding:15px 20px; position:sticky; top:0; z-index:1000;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    header h1 {font-size:1.3rem;}
+    nav a {font-weight:600; transition:.3s;}
+    nav a:hover {color:#90e0ef;}
+
+    /* Hamburger */
+    .menu-toggle {display:block; font-size:2rem; cursor:pointer;}
+
+    /* NAV */
+    .nav-links {
+      display:flex;
+      position:fixed;
+      top:0; right:-100%;
+      height:100vh; width:250px;
+      background:#0096c7;
+      flex-direction:column; align-items:center; justify-content:center;
+      gap:20px;
+      transition: right 0.4s ease;
+      z-index:1001;
+    }
+    .nav-links a {
+      color:white; font-size:1.2rem; font-weight:600;
+      transition:.3s;
+    }
+    .nav-links a:hover {color:#90e0ef;}
+    .nav-links.active { right:0; }
+
+    /* Close button */
+    .close-menu {
+      position:absolute; top:20px; right:20px;
+      font-size:2rem; color:white; cursor:pointer;
+    }
+
+    /* Overlay */
+    .overlay {
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.5);
+      opacity:0; visibility:hidden; transition:.3s;
+      z-index:1000;
+    }
+    .overlay.active {
+      opacity:1; visibility:visible;
+    }
+
+    /* Desktop holati */
+    @media(min-width:769px){
+      .menu-toggle {display:none;}
+      .nav-links {
+        position:static; flex-direction:row;
+        height:auto; width:auto; background:transparent;
+        right:auto; transition:none;
+      }
+      .nav-links a {color:white;}
+      .close-menu, .overlay {display:none;}
+    }
+
+    /* HERO */
+    .hero {
+      background:linear-gradient(135deg,#caf0f8,#ade8f4);
+      text-align:center; padding:80px 20px;
+    }
+    .hero h2 {font-size:2.5rem; margin-bottom:15px;}
+    .hero p {max-width:600px; margin:auto; opacity:0.9;}
+
+    /* SECTION */
+    section {padding:60px 20px;}
+    section h2 {text-align:center; margin-bottom:40px; font-size:2rem; color:#0077b6;}
+
+    /* SERVICES */
+    .services {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px;
+    }
+    .card {
+      background:white; padding:25px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1);
+      text-align:center; transition:.3s;
+    }
+    .card i {font-size:2.5rem; color:#00b4d8; margin-bottom:10px;}
+    .card:hover {transform:translateY(-8px); box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+
+    /* PORTFOLIO */
+    .portfolio {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;
+    }
+
+    /* PRICING */
+    .pricing {display:flex; flex-wrap:wrap; justify-content:center; gap:20px;}
+    .price-box {
+      background:white; padding:25px 40px; border-radius:15px;
+      text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.1);
+      min-width:220px; transition:.3s;
+    }
+    .price-box:hover {transform:scale(1.05);}
+    .price-box h3 {margin-bottom:10px; color:#00b4d8;}
+    .price-box p {font-weight:bold;}
+
+    /* TESTIMONIALS */
+    .testimonials {display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px;}
+    .testimonial {
+      background:white; padding:20px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    }
+    .testimonial p {font-style:italic; margin-bottom:10px;}
+    .testimonial h4 {color:#0077b6;}
+
+    /* CONTACT */
+    .contact-form {max-width:600px; margin:auto; background:white; padding:30px;
+      border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+    .contact-form input,.contact-form textarea {
+      width:100%; padding:12px; margin:10px 0; border:1px solid #ccc; border-radius:10px;
+    }
+    .contact-form button {
+      background:#0077b6; color:white; border:none; padding:12px 20px;
+      border-radius:30px; cursor:pointer; transition:.3s;
+    }
+    .contact-form button:hover {background:#00b4d8;}
+
+    /* FOOTER */
+    footer {
+      background:#03045e; color:white; text-align:center; padding:20px; margin-top:40px;
+    }
+
+    /* ANIMATIONS */
+    [data-animate] {opacity:0; transform:translateY(30px); transition:.6s;}
+    [data-animate].active {opacity:1; transform:translateY(0);}
+  </style>
+</head>
+<body>
+
+  <!-- Overlay -->
+  <div class="overlay"></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="asd">
+    <h1>Dilshodbek</h1>
+<h6 style="margin-top: -8px;">Santexnika Hizmatlari</h4>
+    </div>
+    <i class='bx bx-menu menu-toggle'></i>
+    <nav class="nav-links">
+      <i class='bx bx-x close-menu'></i>
+      <a href="#xizmatlar">Xizmatlar</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#narxlar">Narxlar</a>
+      <a href="#mijozlar">Mijozlar</a>
+      <a href="#aloqa">Aloqa</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" data-animate>
+    <h2>Professional Santexnika Xizmatlari</h2>
+    <p>Quvurlar, vanna, unitaz, isitish tizimlari va boshqa barcha santexnika ishlarini sifatli va tezkor amalga oshiramiz.</p>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="xizmatlar">
+    <h2>Xizmatlar</h2>
+    <div class="services">
+      <div class="card" data-animate>
+        <i class='bx bx-bath'></i>
+        <h3>Dush & Vanna</h3>
+        <p>Vannaxonangizni yangidek qilib ta’mirlab beramiz.</p>
+      </div>
+      <div class="card" data-animate>
+        <i class='bx bx-water'></i>
+        <h3>Quvurlar</h3>
+        <p>Yangi quvurlar o‘rnatish va eskilarini almashtirish.</p>
+      </div>
+      <div class="card" data-animate>
+        <i class='bx bx-wrench'></i>
+        <h3>Ta’mirlash</h3>
+        <p>Suv sizishi, rakovina va boshqa muammolarni hal qilish.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <h2>Ishlarimizdan namunalar</h2>
+    <div class="portfolio">
+      <img src="./toplipol.jpg" alt="ish 1" data-animate>
+      <img   src="./Без названия (5).jpg" alt="ish 2" data-animate>
+      <img src="./paravou1.jpg" alt="ish 3" data-animate>
+      <img src="./paravoy2.jpg" alt="ish 4" data-animate>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="narxlar">
+    <h2>Narxlar</h2>
+    <div class="pricing">
+      <div class="price-box" data-animate>
+        <h3>Oddiy xizmatlar</h3>
+        <p>100 000 so‘mdan</p>
+      </div>
+      <div class="price-box" data-animate>
+        <h3>Murakkab xizmatlar</h3>
+        <p>Kelishilgan holda</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="mijozlar">
+    <h2>Mijozlar fikri</h2>
+    <div class="testimonials">
+      <div class="testimonial" data-animate>
+        <p>"Ustalar juda tez va sifatli ishlashdi. Juda mamnun qoldim!"</p>
+        <h4>— Azizbek</h4>
+      </div>
+      <div class="testimonial" data-animate>
+        <p>"Narxlar hamyonbop, xizmat esa juda professional."</p>
+        <h4>— Malika</h4>
+      </div>
+      <div class="testimonial" data-animate>
+        <p>"Kecha kechqurun suv sizib qoldi, bir soat ichida kelib hal qilishdi."</p>
+        <h4>— Shavkat</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="aloqa">
+    <h2>Aloqa</h2>
+    <div class="contact-form" data-animate>
+      <form onsubmit="sendMessage(event)">
+        <input type="text" id="name" placeholder="Ismingiz" required>
+        <input type="tel" id="phone" placeholder="Telefon raqamingiz" required>
+        <textarea id="message" rows="5" placeholder="Xabaringiz" required></textarea>
+        <button type="submit">Yuborish</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 Professional Santexnika. Barcha huquqlar himoyalangan.
+  </footer>
+
+  <!-- JS -->
+  <script>
+    
+    // scroll animations
+    const animated = document.querySelectorAll("[data-animate]");
+    const showOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      animated.forEach(el => {
+        const boxTop = el.getBoundingClientRect().top;
+        if(boxTop < triggerBottom) el.classList.add("active");
+      });
+    };
+    window.addEventListener("scroll", showOnScroll);
+    showOnScroll();
+
+    // hamburger menu
+    const toggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    const closeBtn = document.querySelector(".close-menu");
+    const overlay = document.querySelector(".overlay");
+    const links = document.querySelectorAll(".nav-links a");
+
+    function openMenu(){
+      navLinks.classList.add("active");
+      overlay.classList.add("active");
+    }
+    function closeMenu(){
+      navLinks.classList.remove("active");
+      overlay.classList.remove("active");
+    }
+
+    toggle.addEventListener("click", openMenu);
+    closeBtn.addEventListener("click", closeMenu);
+    overlay.addEventListener("click", closeMenu);
+    links.forEach(link => link.addEventListener("click", closeMenu));
+
+    // contact form
+    function sendMessage(e){
+      e.preventDefault();
+      alert("Xabaringiz yuborildi! Tez orada siz bilan bog‘lanamiz.");
+      e.target.reset();
+    }
+    // Telegram config (ertaga token va chat_id joylashtirasan)
+  const BOT_TOKEN = "BOT_TOKENINGNI_BU_YERGA_QO'YASAN";
+  const CHAT_ID = "CHAT_ID_INGNI_BU_YERGA_QO'YASAN";
+  const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+  // Contact form
+  document.getElementById("contactForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const message = document.getElementById("message").value;
+
+    const text = `📩 Yangi xabar:\n\n👤 Ism: ${name}\n📞 Telefon: ${phone}\n💬 Xabar: ${message}`;
+
+    fetch(TELEGRAM_API, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: text
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.ok){
+        alert("✅ Xabaringiz yuborildi! Tez orada siz bilan bog‘lanamiz Tashrifingiz uchun rahmat .");
+        document.getElementById("contactForm").reset();
+      } else {
+        alert("❌ Xabar yuborilmadi, iltimos keyinroq urinib ko‘ring.");
+      }
+    })
+    .catch(err => alert("⚠️ Xato yuz berdi: " + err));
+  });
+  </script>
+</body>
+</html>
